@@ -230,10 +230,6 @@ body {
             height: 550px;
             object-fit: cover;
         }
-        #video h2 {
-            font-weight: bold;
-            color: #28a745;
-        }
 
 /* Mostrar notificación */
 .notificacion-carrito.mostrar {
