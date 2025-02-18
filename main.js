@@ -145,7 +145,7 @@ function mostrarNotificacion(nombreProducto, cantidad, esVaciado = false) {
 
     setTimeout(() => {
         notificacion.classList.remove('mostrar');
-    }, 1000);
+    }, 2500);
 }
 
 
