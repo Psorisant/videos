@@ -108,27 +108,46 @@ function vaciarCarrito() {
 
     carrito = {};
     actualizarCarrito();
-    mostrarNotificacion('Carrito vaciado');
+    
+    // Mostrar notificación personalizada cuando el carrito se vacía
+    mostrarNotificacion('Carrito vacío', '', true);
 
     // Cerrar el carrito antes de redirigir
     toggleCarrito();
 }
 
-function mostrarNotificacion(nombreProducto, cantidad) {
+
+function mostrarNotificacion(nombreProducto, cantidad, esVaciado = false) {
     const notificacion = document.getElementById('notificacion-carrito');
     const mensajeNotificacion = document.getElementById('mensaje-notificacion');
     const nombreProductoElem = document.getElementById('nombre-producto');
     const cantidadProductoElem = document.getElementById('cantidad-producto');
+    const iconoCheck = document.querySelector('.icono-check');
 
-    nombreProductoElem.textContent = nombreProducto;
-    cantidadProductoElem.textContent = `Cantidad en carrito: ${cantidad}`;
+    if (esVaciado) {
+        mensajeNotificacion.innerHTML = "<strong>Carrito vaciado correctamente</strong>";
+        nombreProductoElem.textContent = "";
+        cantidadProductoElem.textContent = "";
+        notificacion.style.background = "#dc3545"; // Rojo para destacar el vaciado
+        iconoCheck.innerHTML = "❌"; // Cambia el ícono a una equis
+        iconoCheck.style.background = "white"; // Mantiene el diseño
+        iconoCheck.style.color = "#dc3545"; // Hace la equis roja
+    } else {
+        nombreProductoElem.textContent = nombreProducto;
+        cantidadProductoElem.textContent = `Cantidad en carrito: ${cantidad}`;
+        notificacion.style.background = "#28a745"; // Verde para productos agregados
+        iconoCheck.innerHTML = "✔"; // Devuelve el ícono a check
+        iconoCheck.style.background = "white";
+        iconoCheck.style.color = "#28a745";
+    }
 
     notificacion.classList.add('mostrar');
 
     setTimeout(() => {
         notificacion.classList.remove('mostrar');
-    }, 3000);
+    }, 1000);
 }
+
 
 function cerrarNotificacion() {
     document.getElementById('notificacion-carrito').classList.remove('mostrar');
